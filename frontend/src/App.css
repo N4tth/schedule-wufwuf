@@ -13,26 +13,43 @@
   }
 }
 
+/* Cabecera */
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px;
+}
+
+/* Logo a la derecha */
+.logo {
+  height: 40px;
+}
+
+/* Mensaje de inicio */
+.intro-message {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Formulario */
+.form-container {
+  margin-top: 20px;
+}
+
+/* Campos de entrada */
+.input-field {
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Pie de página */
+.footer {
+  background-color: #282c34;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  padding: 20px;
+  text-align: center;
 }

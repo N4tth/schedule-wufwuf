@@ -5,9 +5,26 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #FFFFFF; /*blanco */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App-header h1,
+.intro-message,
+.footer {
+  color: #464646; /*gris oscuro */
+}
+
+
+.App-header {
+  background-color: #668A4C; /*verde */
+}
+
+.footer {
+  background-color: #ACCC7B; /*verde claro */
+}
+
