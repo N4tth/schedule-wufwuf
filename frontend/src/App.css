@@ -22,8 +22,13 @@
   padding: 20px;
 }
 
-/* Logo a la derecha */
+/* Logo*/
 .logo {
+  image-rendering: './public/logo.jpeg';
+  height: 40px;
+}
+.logoG {
+  image-rendering: './public/logoG.jpeg';
   height: 40px;
 }
 

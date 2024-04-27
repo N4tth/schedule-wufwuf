@@ -14,7 +14,7 @@ test('renders app components', () => {
   expect(dateInput).toBeInTheDocument();
   const timeInput = screen.getByPlaceholderText(/Hora/i);
   expect(timeInput).toBeInTheDocument();
-  const userIdInput = screen.getByPlaceholderText(/ID de usuario/i);
+  const userIdInput = screen.getByPlaceholderText(/Usuario/i);
   expect(userIdInput).toBeInTheDocument();
   const phoneInput = screen.getByPlaceholderText(/Número de teléfono/i);
   expect(phoneInput).toBeInTheDocument();
