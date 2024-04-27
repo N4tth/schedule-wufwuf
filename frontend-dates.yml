@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-dates-pod
+  labels:
+    app: frontend-dates
+spec:
+  containers:
+    - name: frontend-dates-container
+      image: heroslaver/frontend-dates-prueba:latest
+      ports:
+        - containerPort: 3000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-dates-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+  selector:
+    app: frontend-dates

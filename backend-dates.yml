@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-dates-pod
+  labels:
+    app: backend-dates
+spec:
+  containers:
+    - name: backend-dates-container
+      image: heroslaver/backend-dates-project:latest
+      ports:
+        - containerPort: 8000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-dates-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8000
+      protocol: TCP
+  selector:
+    app: backend-dates
