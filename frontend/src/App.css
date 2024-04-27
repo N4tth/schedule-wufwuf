@@ -1,0 +1,60 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* Cabecera */
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Logo*/
+.logo {
+  image-rendering: './public/logo.jpeg';
+  height: 40px;
+}
+.logoG {
+  image-rendering: './public/logoG.jpeg';
+  height: 40px;
+}
+
+/* Mensaje de inicio */
+.intro-message {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Formulario */
+.form-container {
+  margin-top: 20px;
+}
+
+/* Campos de entrada */
+.input-field {
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Pie de página */
+.footer {
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
