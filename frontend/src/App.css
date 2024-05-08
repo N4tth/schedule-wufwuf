@@ -24,7 +24,7 @@
 }
 
 .button-container{
-  background-color: #accc7b;
+  background-color: #fff;
   width: 100%;
   padding: 0;
   box-sizing: border-box;
@@ -49,9 +49,9 @@
 .nav-links li a {
   display: block;
   text-decoration: none;
-  color: white;
+  color: #accc7b;
   padding: 15px 160px;
-  background-color: #accc7b;
+  background-color: #fff;
   transition: background-color 0.3s, color 0.3s;
 
   font-family: roboto, sans-serif;
@@ -59,8 +59,8 @@
 }
 
 .nav-links li a:hover {
-  background-color: white;
-  color: #accc7b;
+  background-color: #668a4c;
+  color: #fff;
 }
 
 
