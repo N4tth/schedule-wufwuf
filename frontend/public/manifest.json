@@ -1,20 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Citas",
+  "name": "Agenda tu cita",
   "icons": [
     {
       "src": "logo.jpeg",
       "type": "image/jpeg",
-      "sizes": "192x192"
+      "sizes": "50x50"
     },
     {
       "src": "logoG.jpeg",
       "type": "image/jpeg",
-      "sizes": "512x512"
+      "sizes": "50x50"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#668A4C",
+  "background_color": "#FFFFFF" 
 }

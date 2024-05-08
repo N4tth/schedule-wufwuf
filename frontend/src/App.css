@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: #fff;
 }
 
 .App-logo {
@@ -15,46 +16,78 @@
 
 /* Cabecera */
 .App-header {
-  background-color: #282c34;
+  background-color: #668a4c;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
 }
 
+.button-container{
+  background-color: #accc7b;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Logo*/
 .logo {
-  image-rendering: './public/logo.jpeg';
-  height: 40px;
+  height: 80px;
 }
-.logoG {
-  image-rendering: './public/logoG.jpeg';
-  height: 40px;
+
+.nav-links{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
+
+.nav-links li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.nav-links li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 15px 160px;
+  background-color: #accc7b;
+  transition: background-color 0.3s, color 0.3s;
+
+  font-family: roboto, sans-serif;
+  font-weight: bold;
+}
+
+.nav-links li a:hover {
+  background-color: white;
+  color: #accc7b;
+}
+
 
 /* Mensaje de inicio */
 .intro-message {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #333;
+  color: #464646;
 }
 
 /* Formulario */
 .form-container {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 /* Campos de entrada */
 .input-field {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   width: 100%;
   max-width: 300px;
 }
 
 /* Pie de página */
 .footer {
-  background-color: #282c34;
+  background-color: #668a4c;
   color: white;
   padding: 20px;
   text-align: center;
+  
 }

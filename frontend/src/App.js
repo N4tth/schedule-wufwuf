@@ -6,15 +6,26 @@ import logo from './App.css'
 function App() {
   return (
     <div className="App">
-      {/* Cabecera */}
       <header className="App-header">
         <div>
-          <h1>WufWuf</h1>
+          <h1>W u f  W u f</h1>
         </div>
-        <img src={logo} className="logo" alt="logo" />
+        <div className='logo-container'>
+          <img src={process.env.PUBLIC_URL + '/logo.jpeg'} className='logo' alt='logo'/>
+        </div>
       </header>
+
+      <div className='button-container'>
+        <nav>
+          <ul className='nav-links'>
+            <li><a href='#'>Inicio</a></li> 
+            <li><a href='#'>Catálogo</a></li> 
+            <li><a href='#'>Tus citas</a></li> 
+          </ul>
+        </nav>
+      </div>
       
-      {/* Mensaje de inicio */}
+
       <p className="intro-message">¡Agenda tu cita y adopta tu peludito!</p>
       
       {/* Formulario */}
@@ -29,12 +40,8 @@ function App() {
         <input type="email" className="input-field" placeholder="Email" />
       </div>
       
-      {/* Pie de página */}
       <footer className="footer">
-        {/* Datos de contacto */}
         <p>Contacto: contact@wufwuf.com</p>
-        {/* logo */}
-        <img src={logo} className="logo" alt="logo" />
       </footer>
     </div>
   );

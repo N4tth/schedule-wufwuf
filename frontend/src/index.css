@@ -14,17 +14,18 @@ code {
 }
 
 .App-header h1,
+
 .intro-message,
 .footer {
-  color: #464646; /*gris oscuro */
+  color: #FFFFFF; 
 }
 
 
 .App-header {
-  background-color: #668A4C; /*verde */
+  background-color: #668A4C;
 }
 
 .footer {
-  background-color: #ACCC7B; /*verde claro */
+  background-color: #ACCC7B;
 }
 
