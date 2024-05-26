@@ -13,19 +13,3 @@ code {
     monospace;
 }
 
-.App-header h1,
-
-.intro-message,
-.footer {
-  color: #FFFFFF; 
-}
-
-
-.App-header {
-  background-color: #668A4C;
-}
-
-.footer {
-  background-color: #ACCC7B;
-}
-

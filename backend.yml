@@ -3,13 +3,19 @@ kind: Pod
 metadata:
   name: backend-dates-pod
   labels:
-    app: backend-dates
+    app: dates
+    
 spec:
   containers:
     - name: backend-dates-container
       image: heroslaver/backend-dates-project:latest
       ports:
         - containerPort: 8000
+      env:
+        - name: DJANGO_SETTINGS_MODULE
+          value: "backendDates.settings"
+
+
 
 ---
 
@@ -20,8 +26,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - port: 8000
       targetPort: 8000
       protocol: TCP
   selector:
-    app: backend-dates
+    app: dates

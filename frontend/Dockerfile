@@ -1,19 +1,21 @@
-# Usa una imagen base de Node.js
-FROM node:14
+FROM node:21-alpine3.18
+COPY . /app
+WORKDIR /app
+RUN npm install
+CMD ["npm", "run", "dev"]
 
-# Establece el directorio de trabajo
-WORKDIR /usr/src/app
 
-# Copia el archivo del proyecto al contenedor
-COPY ./frontend.js ./
+# # Etapa de producción
+# FROM nginx:alpine
 
-# Instala Express
-RUN npm init -y
-RUN npm install express
-RUN npm install axios
+# # Copia los archivos construidos desde la etapa anterior
+# COPY --from=build /usr/src/app/build /usr/share/nginx/html
 
-# Expone el puerto en el que se ejecutará el servicio
-EXPOSE 3000
+# # Copia la configuración de nginx
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Comando para ejecutar la aplicación
-CMD ["node", "frontend.js"]
+# # Exponer el puerto en el que se ejecutará el servicio
+# EXPOSE 3000
+
+# # Comando para ejecutar nginx
+# CMD ["nginx", "-g", "daemon off;"]

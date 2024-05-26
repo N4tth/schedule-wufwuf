@@ -1,21 +1,27 @@
+
 .App {
   text-align: center;
   color: #fff;
 }
 
-.App-logo {
+.AppLogo {
   height: 40vmin;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  .AppLogo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
+/* Estilos globales */
+.textCenter {
+  text-align: center;
+}
+
 /* Cabecera */
-.App-header {
+.header {
   background-color: #668a4c;
   display: flex;
   justify-content: space-between;
@@ -23,61 +29,77 @@
   padding: 20px;
 }
 
-.button-container{
+.AppHeader h1,
+
+.introMessage,
+
+.footer {
+  color: #FFFFFF; 
+}
+
+
+.AppHeader {
+  background-color: #668A4C;
+}
+
+.footer {
+  background-color: #ACCC7B;
+}
+
+
+.buttonContainer {
   background-color: #fff;
   width: 100%;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Logo*/
+/* Logo */
 .logo {
   height: 80px;
 }
 
-.nav-links{
+.navLinks {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.nav-links li {
+.navLinks li {
   display: inline-block;
   margin: 0 10px;
 }
 
-.nav-links li a {
+.navLinks li a {
   display: block;
   text-decoration: none;
   color: #accc7b;
   padding: 15px 160px;
   background-color: #fff;
   transition: background-color 0.3s, color 0.3s;
-
   font-family: roboto, sans-serif;
   font-weight: bold;
 }
 
-.nav-links li a:hover {
+.navLinks li a:hover {
   background-color: #668a4c;
   color: #fff;
 }
 
-
 /* Mensaje de inicio */
-.intro-message {
+.introMessage {
   font-size: 24px;
   margin-bottom: 20px;
   color: #464646;
 }
 
 /* Formulario */
-.form-container {
+.formContainer {
   margin-top: 50px;
 }
 
 /* Campos de entrada */
-.input-field {
+.inputField {
   margin-bottom: 20px;
   width: 100%;
   max-width: 300px;
@@ -89,5 +111,10 @@
   color: white;
   padding: 20px;
   text-align: center;
-  
 }
+
+/* Label formulario */
+.formLabel {
+  color: black;
+}
+
