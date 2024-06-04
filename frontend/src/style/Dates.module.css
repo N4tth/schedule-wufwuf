@@ -1,4 +1,3 @@
-
 .App {
   text-align: center;
   color: #fff;
@@ -19,33 +18,6 @@
 .textCenter {
   text-align: center;
 }
-
-/* Cabecera */
-.header {
-  background-color: #668a4c;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-}
-
-.AppHeader h1,
-
-.introMessage,
-
-.footer {
-  color: #FFFFFF; 
-}
-
-
-.AppHeader {
-  background-color: #668A4C;
-}
-
-.footer {
-  background-color: #ACCC7B;
-}
-
 
 .buttonContainer {
   background-color: #fff;

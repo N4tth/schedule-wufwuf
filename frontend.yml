@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: frontend-dates-container
-      image: heroslaver/frontend-dates-project:latest
+      image: heroslaver/frontend-dates:latest
       ports:
         - containerPort: 3000
 
@@ -19,11 +19,12 @@ kind: Service
 metadata:
   name: frontend-dates-service
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - port: 3000
       targetPort: 3000
       protocol: TCP
+      nodePort: 31235
   selector:
     app: dates
 

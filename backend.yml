@@ -11,9 +11,6 @@ spec:
       image: heroslaver/backend-dates-project:latest
       ports:
         - containerPort: 8000
-      env:
-        - name: DJANGO_SETTINGS_MODULE
-          value: "backendDates.settings"
 
 
 
