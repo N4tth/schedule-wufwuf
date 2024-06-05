@@ -1,8 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from '../style/Dates.module.css';
-import { backend } from '../tools';
+import styles from '../../style/Dates.module.css';
+import { backend } from '../../tools';
 
 export default function Dates() {
     const [formData, setFormData] = useState({

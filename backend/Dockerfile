@@ -1,20 +1,20 @@
-# Usa una imagen base de Python
-FROM python:3.8
+# Utiliza una imagen base de Python
+FROM python:3.9
 
-# Establece el directorio de trabajo en el contenedor
+# Establece el directorio de trabajo en /app
 WORKDIR /app
 
-# Copia el archivo requirements.txt al contenedor
+# Copia los archivos requirements.txt al contenedor
 COPY requirements.txt .
 
-# Instala las dependencias
+# Instala las dependencias de Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia el resto de la aplicación al contenedor
+# Copia todos los archivos de la aplicación al contenedor
 COPY . .
 
-# Expone el puerto en el que se ejecutará la aplicación
+# Expone el puerto 8000 para que Gunicorn pueda servir la aplicación
 EXPOSE 8000
 
-# Comando para ejecutar la aplicación
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Comando para ejecutar Gunicorn y servir la aplicación Django
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "backend2.wsgi:application"]

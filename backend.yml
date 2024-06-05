@@ -8,10 +8,9 @@ metadata:
 spec:
   containers:
     - name: backend-dates-container
-      image: heroslaver/backend-dates-project:latest
+      image: heroslaver/backend:latest
       ports:
         - containerPort: 8000
-
 
 
 ---

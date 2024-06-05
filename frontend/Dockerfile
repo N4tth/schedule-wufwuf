@@ -1,21 +1,23 @@
-FROM node:20-alpine
-COPY . /app
-WORKDIR /app
+# Utiliza una imagen oficial de Node.js como base
+FROM node:18
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /usr/src/app
+
+# Copia package.json y package-lock.json al contenedor
+COPY package*.json ./
+
+# Instala las dependencias
 RUN npm install
-CMD ["npm", "run", "dev"]
 
+# Copia el resto de los archivos de tu aplicación
+COPY . .
 
-# # Etapa de producción
-# FROM nginx:alpine
+# Construye la aplicación (por ejemplo, con el comando "npm run build")
+RUN npm run build
 
-# # Copia los archivos construidos desde la etapa anterior
-# COPY --from=build /usr/src/app/build /usr/share/nginx/html
+# Expone el puerto 3000
+EXPOSE 3000
 
-# # Copia la configuración de nginx
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# # Exponer el puerto en el que se ejecutará el servicio
-# EXPOSE 3000
-
-# # Comando para ejecutar nginx
-# CMD ["nginx", "-g", "daemon off;"]
+# Comando para ejecutar la aplicación
+CMD ["npm", "run", "start"]
