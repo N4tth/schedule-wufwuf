@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: frontend-dates-pod
   labels:
-    app: dates
+    app: frontend-dates
     
 spec:
   containers:
@@ -19,12 +19,11 @@ kind: Service
 metadata:
   name: frontend-dates-service
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 3000
       targetPort: 3000
       protocol: TCP
-      nodePort: 31235
   selector:
-    app: dates
+    app: frontend-dates
 

@@ -55,6 +55,7 @@ export default function Dates() {
             }).catch((err) => {
                 console.error(err);
             });
+            console.log(datesResponse.data)
         };
         fetchDates();
     }, []);

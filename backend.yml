@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: backend-dates-pod
   labels:
-    app: dates
+    app: backend-dates
     
 spec:
   containers:
@@ -26,4 +26,4 @@ spec:
       targetPort: 8000
       protocol: TCP
   selector:
-    app: dates
+    app: backend-dates
