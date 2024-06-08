@@ -10,7 +10,6 @@ export default function Dates() {
     const [formData, setFormData] = useState({
         date_time: '',
         hour_date_time: '',
-        username: '',
         pet_id: 23,
         phone_number: '',
         nombre: '',
@@ -20,7 +19,6 @@ export default function Dates() {
 
     const [isUser, setIsUser] = useState(false);
     const [dates, setDates] = useState([]);
-    const [error, setError] = useState(null);
     
 
     const handleChange = (e) => {
@@ -67,12 +65,9 @@ export default function Dates() {
             isFormComplete = requiredFields.every(field => formData[field].trim() !== '');
         }
 
-        console.log(requiredFields)
-        console.log(isFormComplete)
         if(isFormComplete){
             if (dateExists) {
-                const notify = () => toast("Ya hay una cita en ese horario, escoge otro");
-                notify()
+                toast.error("Ya hay una cita en ese horario, escoge otro");
             } else {
                 await axios.post(backend, formData)
                     .then((res) => {
@@ -82,8 +77,7 @@ export default function Dates() {
                     });
             }
         }else{
-            const notify = () => toast("LLena todos los campos");
-            notify()
+            toast.error("LLena todos los campos");
         }
     };
 
@@ -97,21 +91,21 @@ export default function Dates() {
             });
         };
         const fetchPet = async () => {
-            const datesResponse = await axios.get(catalogPet
+            await axios.get(catalogPet
             ).then((res) => {
-                console.log(res);
+                console.log(res.data);
                 setFormData({
                     ...formData,
-                    pet_id: datesResponse
+                    pet_id: res.data
                 });
             }).catch((err) => {
                 console.error(err);
             });
         };
         const fetchUser = async () => {
-            const datesResponse = await axios.get(userManagement
+            await axios.get(userManagement
             ).then((res) => {
-                console.log(res);
+                console.log(res.data);
                 // setFormData({
                 //     ...formData,
                 //     username: datesResponse
