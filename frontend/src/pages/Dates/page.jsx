@@ -2,7 +2,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../../style/Dates.module.css';
-import { backend } from '../../tools';
+import { backend, catalogPet, userManagement } from '../../tools';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Dates() {
     const [formData, setFormData] = useState({
@@ -19,6 +21,7 @@ export default function Dates() {
     const [isUser, setIsUser] = useState(false);
     const [dates, setDates] = useState([]);
     const [error, setError] = useState(null);
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,37 +31,83 @@ export default function Dates() {
         });
     };
 
+    // Generar opciones de horas en intervalos de 20 minutos
+    const generateTimeOptions = () => {
+        const options = [];
+        for (let hour = 0; hour < 24; hour++) {
+            for (let minute = 0; minute < 60; minute += 20) {
+                const hourString = hour.toString().padStart(2, '0');
+                const minuteString = minute.toString().padStart(2, '0');
+                options.push(`${hourString}:${minuteString}`);
+            }
+        }
+        return options;
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         console.log(formData);
-        await axios.post(backend, formData)
-            .then((res) => {
-                console.log(res);
-            }).catch((err) => {
-                console.error(err);
-            });
+        console.log(dates)
+
+        // Validar si la fecha y hora ya existen
+        const selectedDate = formData.date_time;
+        const selectedTime = formData.hour_date_time;
+        const dateExists = dates.some(date => date.date_time === selectedDate && date.hour_date_time === selectedTime);
+
+        if (dateExists) {
+            const notify = () => toast("Ya hay una cita en ese horario, escoge otro");
+            notify()
+        } else {
+            await axios.post(backend, formData)
+                .then((res) => {
+                    console.log(res);
+                }).catch((err) => {
+                    console.error(err);
+                });
+        }
     };
 
     useEffect(() => {
-        // Coloca a la mascota en el formulario
-        setFormData({
-            ...formData,
-            pet_id: 23
-        });
-    }, []);
-
-    useEffect(() => {
         const fetchDates = async () => {
-            const datesResponse = await axios.get(backend
+            await axios.get(backend
             ).then((res) => {
-                console.log(res);
+                setDates(res.data)
             }).catch((err) => {
                 console.error(err);
             });
-            console.log(datesResponse.data)
+        };
+        const fetchPet = async () => {
+            const datesResponse = await axios.get(catalogPet
+            ).then((res) => {
+                console.log(res);
+                setFormData({
+                    ...formData,
+                    pet_id: datesResponse
+                });
+            }).catch((err) => {
+                console.error(err);
+            });
+        };
+        const fetchUser = async () => {
+            const datesResponse = await axios.get(userManagement
+            ).then((res) => {
+                console.log(res);
+                // setFormData({
+                //     ...formData,
+                //     username: datesResponse
+                // });
+                //setIsUser()
+            }).catch((err) => {
+                console.error(err);
+            });
         };
         fetchDates();
+        //fetchPet();
+        //fetchUser();
     }, []);
+
+
 
     return (
         <div className="w-screen h-screen flex flex-col">
@@ -82,15 +131,25 @@ export default function Dates() {
             <div className='w-screen h-screen'>
                 <p className='text-center text-black text-2xl'>¡Agenda tu cita y adopta tu peludito!</p>
                 <div className={styles.formContainer}>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className='text-black'>
                         <label className={styles.formLabel}>
                             Escoge una fecha:
                             <input type="date" className={styles.inputField} name="date_time" placeholder="Fecha de la cita" value={formData.date_time} onChange={handleChange} />
                         </label>
-                        <label className={styles.formLabel}>
-                            Selecciona una hora:
-                            <input type="time" className={styles.inputField} name="hour_date_time" placeholder="Hora" value={formData.hour_date_time} onChange={handleChange} />
-                        </label>
+                        <div>
+                            <label htmlFor="hour_date_time">Hora</label>
+                            <select
+                                id="hour_date_time"
+                                name="hour_date_time"
+                                value={formData.hour_date_time}
+                                onChange={handleChange}
+                            >
+                                <option value="">Seleccione una hora</option>
+                                {generateTimeOptions().map((time) => (
+                                    <option key={time} value={time}>{time}</option>
+                                ))}
+                            </select>
+                        </div>
 
                         {!isUser && (
                             <>

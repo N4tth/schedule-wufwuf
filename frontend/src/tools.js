@@ -1,2 +1,3 @@
 export const backend = '/service-dates/api/dates';
-export const loginRedirectLink = 'frontend-dates-service:8000';
+export const userManagement = '/service-dates/api/user';
+export const catalogPet = '/service-dates/api/pet';
