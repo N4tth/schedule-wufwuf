@@ -55,16 +55,35 @@ export default function Dates() {
         const selectedTime = formData.hour_date_time;
         const dateExists = dates.some(date => date.date_time === selectedDate && date.hour_date_time === selectedTime);
 
-        if (dateExists) {
-            const notify = () => toast("Ya hay una cita en ese horario, escoge otro");
+        // Verificar que todos los campos estén completos
+        var requiredFields = [];
+        var isFormComplete = false;
+
+        if(isUser){
+            requiredFields = ['date_time', 'hour_date_time'];
+            isFormComplete = requiredFields.every(field => formData[field].trim() !== '');
+        }else{
+            requiredFields = ['date_time', 'hour_date_time', 'phone_number', 'nombre', 'apellido', 'email'];
+            isFormComplete = requiredFields.every(field => formData[field].trim() !== '');
+        }
+
+        console.log(requiredFields)
+        console.log(isFormComplete)
+        if(isFormComplete){
+            if (dateExists) {
+                const notify = () => toast("Ya hay una cita en ese horario, escoge otro");
+                notify()
+            } else {
+                await axios.post(backend, formData)
+                    .then((res) => {
+                        console.log(res);
+                    }).catch((err) => {
+                        console.error(err);
+                    });
+            }
+        }else{
+            const notify = () => toast("LLena todos los campos");
             notify()
-        } else {
-            await axios.post(backend, formData)
-                .then((res) => {
-                    console.log(res);
-                }).catch((err) => {
-                    console.error(err);
-                });
         }
     };
 
@@ -179,6 +198,7 @@ export default function Dates() {
             <footer className="bg-[#668a4c] text-white p-[20px] text-center inset-x-0 bottom-0">
                 <p>Contacto: contact@wufwuf.com</p>
             </footer>
+            <ToastContainer />
         </div>
     );
 }
