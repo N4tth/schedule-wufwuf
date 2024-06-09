@@ -1,10 +1,48 @@
 .App {
   text-align: center;
-  color: #fff;
+  color: #ACCC7B;
+  
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  height: 60px;
+  display: flex;
+  padding: 0 20px;
+  z-index: 1000; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.navbarMenu {
+  display: flex;
+  gap: 15px;
+}
+
+.navbarItem:hover {
+  color: #ACCC7B;
+}
+
+.navbarButton{
+  background-color: white;
+  color: #668a4c;
+  width: 150px; 
+  height: 40px; 
+  border: none; 
+  border-radius: 5px; 
+}
+
+.tittleContainer{
+  background-color: #668A4C;
+  font-size: 3.5em;
+  color: white;
+  font-weight: bold;
+  
 }
 
 .AppLogo {
-  height: 40vmin;
+  height: 25vmin;
   pointer-events: none;
 }
 
@@ -14,21 +52,22 @@
   }
 }
 
-/* Estilos globales */
-.textCenter {
-  text-align: center;
-}
 
 .buttonContainer {
   background-color: #fff;
   width: 100%;
-  padding: 0;
+  padding: 20dp;
   box-sizing: border-box;
+  color: #668a4c;
+  border: none; 
+  border-radius: 5px; 
 }
+
 
 /* Logo */
 .logo {
-  height: 80px;
+  height: 30px; 
+  float: right; 
 }
 
 .navLinks {
@@ -45,40 +84,65 @@
 .navLinks li a {
   display: block;
   text-decoration: none;
-  color: #accc7b;
+  color: white;
   padding: 15px 16px;
-  background-color: white;
+  background-color: #668A4C;
   transition: background-color 0.3s, color 0.3s;
   font-family: roboto, sans-serif;
   font-weight: bold;
 }
 
 .navLinks li a:hover {
-  background-color: #668a4c;
-  color: #fff;
+  background-color: white;
+  color: #668A4C;
 }
 
-/* Mensaje de inicio */
+
 .introMessage {
   font-size: 24px;
-  margin-bottom: 20px;
-  color: #464646;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: #668A4C;
+  
 }
 
-/* Formulario */
 .formContainer {
-  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  justify-content: center;
+  background-color: white;
+  padding-left: 80px;
 }
 
-/* Campos de entrada */
+.formButton{
+  background-color: #668A4C;
+  color: white;
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
+  transition: all 0.3s ease; 
+  text-weight:bold;
+}
+
+
 .inputField {
   margin-bottom: 20px;
   width: 100%;
   max-width: 300px;
+  border: none;
+  border-radius: 5px;
 }
 
-/* Label formulario */
 .formLabel {
-  color: black;
+  color: #668A4C;
+  display:grid;
+  width: 100%;
+  max-width: 300px;
+  border: none;
+  border-radius: 5px;
+  
 }
 
