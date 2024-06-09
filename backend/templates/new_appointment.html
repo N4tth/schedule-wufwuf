@@ -1,8 +1,11 @@
+<!-- templates/new_appointment_notification.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Cita Creada</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -10,6 +13,7 @@
             margin: 0;
             padding: 0;
         }
+
         .email-container {
             max-width: 600px;
             margin: 0 auto;
@@ -19,45 +23,42 @@
             border-color: #ddd;
             border-radius: 8px;
         }
+
         .header {
             text-align: center;
             padding-top: 20px;
             padding-bottom: 20px;
+            margin: 0px;
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
             background-color: #accc7b;
+            font-size: 23px;
         }
+
         .content {
             text-align: center;
             align-items: center;
             line-height: 1.5;
         }
+
         .text {
             font-weight: bold;
         }
-        .footer {
-            text-align: center;
-            padding-top: 20px;
-            font-size: 12px;
-            color: #666666;
-            padding-bottom: 5px;
-        }
+
     </style>
 </head>
+
 <body>
     <div class="email-container">
-        <div class="header">
-            <h2>Hola, {{ nombre }} {{ apellido }}</h2>
-        </div>
+        <h1 class="header">Se ha creado una nueva cita</h1>
         <div class="content">
-            <p>🐕 Gracias por agendar tu cita con nosotros para adoptar un peludito 🐈</p>
-            <p>Aquí están los detalles de tu cita:</p>
-            <p class="text">El dia: {{ date_time }}, a la hora: {{ hour_date_time }}</p>
-            <p>Esperamos verte pronto</p>
-        </div>
-        <div class="footer">
-            <p>Contacto: wufwufriend@gmail.com</p>
+            <p>🐕 Detalles de la cita 🐈</p>
+            <p>Nombre: {{ nombre }} {{ apellido }}</p>
+            <p>Fecha: {{ date_time }}</p>
+            <p>Hora: {{ hour_date_time }}</p>
+            <p>Email: {{ email }}</p>
         </div>
     </div>
 </body>
+
 </html>

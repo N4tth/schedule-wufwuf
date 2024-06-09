@@ -23,6 +23,7 @@ class DatesViewSet(viewsets.ModelViewSet):
             'apellido': instance.last_name,
             'date_time': instance.date_time,
             'hour_date_time': instance.hour_date_time,
+            'email': instance.email
         }
 
         # Aquí envía el correo electrónico de confirmación

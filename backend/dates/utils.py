@@ -15,3 +15,15 @@ def send_confirmation_email(to_email, subject, context):
         [to_email],
         html_message=html_message,
     )
+
+    # Enviar correo al administrador
+    admin_html_message = render_to_string('new_appointment.html', context)
+    admin_plain_message = strip_tags(admin_html_message)
+
+    send_mail(
+        'Nueva Cita Creada',
+        admin_plain_message,
+        settings.EMAIL_HOST_USER,
+        [settings.EMAIL_HOST_USER],
+        html_message=admin_html_message,
+    )
