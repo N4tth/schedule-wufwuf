@@ -5,21 +5,23 @@ import styles from '../../style/Dates.module.css';
 import { backend, catalogPet, userManagement } from '../../tools';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 export default function Dates() {
     const [formData, setFormData] = useState({
         date_time: '',
         hour_date_time: '',
+        username: '',
         pet_id: 23,
-        phone_number: '',
-        nombre: '',
-        apellido: '',
+        name: '',
+        last_name: '',
         email: ''
     });
 
     const [isUser, setIsUser] = useState(false);
     const [dates, setDates] = useState([]);
-    
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [loading, setLoading] = useState(true); // Estado de carga
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -45,9 +47,6 @@ export default function Dates() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(formData);
-        console.log(dates)
-
         // Validar si la fecha y hora ya existen
         const selectedDate = formData.date_time;
         const selectedTime = formData.hour_date_time;
@@ -57,26 +56,29 @@ export default function Dates() {
         var requiredFields = [];
         var isFormComplete = false;
 
-        if(isUser){
+        if (isUser) {
             requiredFields = ['date_time', 'hour_date_time'];
             isFormComplete = requiredFields.every(field => formData[field].trim() !== '');
-        }else{
-            requiredFields = ['date_time', 'hour_date_time', 'phone_number', 'nombre', 'apellido', 'email'];
+        } else {
+            requiredFields = ['date_time', 'hour_date_time', 'name', 'last_name', 'email'];
             isFormComplete = requiredFields.every(field => formData[field].trim() !== '');
         }
 
-        if(isFormComplete){
-            if (dateExists) {
-                toast.error("Ya hay una cita en ese horario, escoge otro");
-            } else {
+        if (isFormComplete) {
+            if (!dateExists) {
+                console.log(formData)
                 await axios.post(backend, formData)
                     .then((res) => {
                         console.log(res);
+                        toast.success("Cita creada exitosamente! y correo de confirmación enviado");
                     }).catch((err) => {
                         console.error(err);
+                        toast.error("Error con la base de datos, inténtalo después");
                     });
+            } else {
+                toast.error("Ya hay una cita en ese horario, escoge otro");
             }
-        }else{
+        } else {
             toast.error("LLena todos los campos");
         }
     };
@@ -106,18 +108,37 @@ export default function Dates() {
             await axios.get(userManagement
             ).then((res) => {
                 console.log(res.data);
-                // setFormData({
-                //     ...formData,
-                //     username: datesResponse
-                // });
-                //setIsUser()
+                const userData = res.data;
+                setFormData((prevData) => ({
+                    ...prevData,
+                    username: userData.username,
+                    name: userData.name,
+                    last_name: userData.lastname,
+                    email: userData.email
+                }));
+                setIsUser(true)
+
+                //Verifica si es admin
+                if (userData.role !== "member") {
+                    isAdmin(true)
+                } else {
+                    isAdmin(false)
+                }
+
             }).catch((err) => {
-                console.error(err);
+                setIsUser(false)
             });
         };
-        fetchDates();
-        //fetchPet();
-        //fetchUser();
+
+        const fetchData = async () => {
+            setLoading(true);
+            await fetchDates();
+            //await fetchPet();
+            await fetchUser();
+            setLoading(false);
+        };
+
+        fetchData()
     }, []);
 
 
@@ -142,57 +163,61 @@ export default function Dates() {
                 </div>
             </header>
             <div className='w-screen h-screen'>
-                <p className='text-center text-black text-2xl'>¡Agenda tu cita y adopta tu peludito!</p>
                 <div className={styles.formContainer}>
-                    <form onSubmit={handleSubmit} className='text-black'>
-                        <label className={styles.formLabel}>
-                            Escoge una fecha:
-                            <input type="date" className={styles.inputField} name="date_time" placeholder="Fecha de la cita" value={formData.date_time} onChange={handleChange} />
-                        </label>
-                        <div>
-                            <label htmlFor="hour_date_time">Hora</label>
-                            <select
-                                id="hour_date_time"
-                                name="hour_date_time"
-                                value={formData.hour_date_time}
-                                onChange={handleChange}
-                            >
-                                <option value="">Seleccione una hora</option>
-                                {generateTimeOptions().map((time) => (
-                                    <option key={time} value={time}>{time}</option>
-                                ))}
-                            </select>
+                    {loading ? (
+                        <div className="flex justify-center items-center h-full">
+                            <ClipLoader size={50} color={"#668a4c"} loading={loading} />
                         </div>
+                    ) : (
+                        <>
+                            <p className='text-center text-black text-2xl'>¡Agenda tu cita y adopta tu peludito!</p>
+                            <form onSubmit={handleSubmit} className='text-black'>
+                                <label className={styles.formLabel}>
+                                    Escoge una fecha:
+                                    <input type="date" className={styles.inputField} name="date_time" placeholder="Fecha de la cita" value={formData.date_time} onChange={handleChange} />
+                                </label>
+                                <div>
+                                    <label htmlFor="hour_date_time">Hora</label>
+                                    <select
+                                        id="hour_date_time"
+                                        name="hour_date_time"
+                                        value={formData.hour_date_time}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">Seleccione una hora</option>
+                                        {generateTimeOptions().map((time) => (
+                                            <option key={time} value={time}>{time}</option>
+                                        ))}
+                                    </select>
+                                </div>
 
-                        {!isUser && (
-                            <>
-                                <label className={styles.formLabel}>
-                                    Teléfono:
-                                    <input type="tel" className={styles.inputField} name="phone_number" placeholder="Número de teléfono" value={formData.phone_number} onChange={handleChange} />
-                                </label>
-                                <label className={styles.formLabel}>
-                                    Nombre:
-                                    <input type="text" className={styles.inputField} name="nombre" placeholder="Nombre" value={formData.nombre} onChange={handleChange} />
-                                </label>
-                                <label className={styles.formLabel}>
-                                    Apellido:
-                                    <input type="text" className={styles.inputField} name="apellido" placeholder="Apellido" value={formData.apellido} onChange={handleChange} />
-                                </label>
-                                <label className={styles.formLabel}>
-                                    Email:
-                                    <input type="email" className={styles.inputField} name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
-                                </label>
-                            </>
-                        )}
+                                {!isUser && (
+                                    <>
+                                        <label className={styles.formLabel}>
+                                            Nombre:
+                                            <input type="text" className={styles.inputField} name="name" placeholder="Nombre" value={formData.name} onChange={handleChange} />
+                                        </label>
+                                        <label className={styles.formLabel}>
+                                            Apellido:
+                                            <input type="text" className={styles.inputField} name="last_name" placeholder="Apellido" value={formData.last_name} onChange={handleChange} />
+                                        </label>
+                                        <label className={styles.formLabel}>
+                                            Email:
+                                            <input type="email" className={styles.inputField} name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
+                                        </label>
+                                    </>
+                                )}
 
-                        <button type="submit">Crear cita</button>
-                    </form>
+                                <button type="submit">Crear cita</button>
+                            </form>
+                        </>
+                    )}
                 </div>
             </div>
             <footer className="bg-[#668a4c] text-white p-[20px] text-center inset-x-0 bottom-0">
                 <p>Contacto: contact@wufwuf.com</p>
             </footer>
             <ToastContainer />
-        </div>
+        </div >
     );
 }

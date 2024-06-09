@@ -4,16 +4,21 @@ export default async function handler(req, res) {
 
     if (req.method === 'GET') {
         try {
-            // Extraer la primera cookie de la solicitud entrante
+            // Extraer todas las cookies de la solicitud entrante
             const cookies = req.headers.cookie;
-            const firstCookie = cookies ? cookies.split(';')[0].trim() : '';
 
+            // Buscar la cookie llamada 'access-token'
+            const accessTokenCookie = cookies.split(';').find(cookie => cookie.trim().startsWith('access-token='));
+
+            // Obtener el valor de la cookie 'access-token'
+            const accessToken = accessTokenCookie ? accessTokenCookie.split('=')[1] : '';
+            
             let preRes = await fetch(ServiceLink, {
                 method: 'GET',
                 headers: {
-                    'accept':'application/json',
+                    'accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'access-token': firstCookie
+                    'access-token': accessToken
                 },
             });
             const data = await preRes.json()
