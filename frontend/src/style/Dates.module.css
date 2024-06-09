@@ -91,14 +91,22 @@
 
   min-width: 300px;
   min-height: 350px;
+  max-width: 300px;
+  max-height: 350px;
+  
 
   overflow: hidden; 
 }
 .promoContainer img {
-  max-width: 100%; 
   height: auto; 
   display: block; 
   object-fit: contain; 
+  
+  min-width: 300px;
+  min-height: 350px;
+  max-width: 300px;
+  max-height: 350px;
+
 }
 
 
