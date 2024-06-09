@@ -12,7 +12,7 @@ export default function Dates() {
         date_time: '',
         hour_date_time: '',
         username: '',
-        pet_id: 23,
+        pet_id: 0,
         name: '',
         last_name: '',
         email: ''
@@ -101,7 +101,10 @@ export default function Dates() {
                     pet_id: res.data
                 });
             }).catch((err) => {
-                console.error(err);
+                setFormData({
+                    ...formData,
+                    pet_id: 0
+                });
             });
         };
         const fetchUser = async () => {
@@ -120,9 +123,9 @@ export default function Dates() {
 
                 //Verifica si es admin
                 if (userData.role !== "member") {
-                    isAdmin(true)
+                    setIsAdmin(true)
                 } else {
-                    isAdmin(false)
+                    setIsAdmin(false)
                 }
 
             }).catch((err) => {
@@ -133,7 +136,7 @@ export default function Dates() {
         const fetchData = async () => {
             setLoading(true);
             await fetchDates();
-            //await fetchPet();
+            await fetchPet();
             await fetchUser();
             setLoading(false);
         };
