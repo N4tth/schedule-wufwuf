@@ -4,38 +4,9 @@
   
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  height: 60px;
-  display: flex;
-  padding: 0 20px;
-  z-index: 1000; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-
-.navbarMenu {
-  display: flex;
-  gap: 15px;
-}
-
-.navbarItem:hover {
-  color: #ACCC7B;
-}
-
-.navbarButton{
-  background-color: white;
-  color: #668a4c;
-  width: 150px; 
-  height: 40px; 
-  border: none; 
-  border-radius: 5px; 
-}
-
 .tittleContainer{
   background-color: #668A4C;
-  font-size: 3.5em;
+  font-size: 1.5em;
   color: white;
   font-weight: bold;
   
@@ -53,17 +24,6 @@
 }
 
 
-.buttonContainer {
-  background-color: #fff;
-  width: 100%;
-  padding: 20dp;
-  box-sizing: border-box;
-  color: #668a4c;
-  border: none; 
-  border-radius: 5px; 
-}
-
-
 /* Logo */
 .logo {
   height: 30px; 
@@ -76,43 +36,33 @@
   padding: 0;
 }
 
-.navLinks li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-.navLinks li a {
-  display: block;
-  text-decoration: none;
-  color: white;
-  padding: 15px 16px;
-  background-color: #668A4C;
-  transition: background-color 0.3s, color 0.3s;
-  font-family: roboto, sans-serif;
-  font-weight: bold;
-}
-
-.navLinks li a:hover {
-  background-color: white;
-  color: #668A4C;
-}
-
 
 .introMessage {
   font-size: 24px;
-  margin-top: 15px;
+  margin-top: -185px;
   margin-bottom: 10px;
   color: #668A4C;
-  
+  position:absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  z-index: 9999; 
+  font-weight: bold;
 }
 
 .formContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; 
+  align-items: flex-start;
   justify-content: center;
+  margin-top: 35px; 
+  position: absolute;
+  right: 0;
+  margin-right: 100px;
   background-color: white;
-  padding-left: 80px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  padding: 50px;
+  color: #668A4C;
 }
 
 .formButton{
@@ -122,9 +72,20 @@
   height: 40px;
   border: none;
   border-radius: 5px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
-  transition: all 0.3s ease; 
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   text-weight:bold;
+  
+}
+
+.calButton {
+  background-color: #ACCC7B;
+  color: white;
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 
@@ -134,6 +95,7 @@
   max-width: 300px;
   border: none;
   border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .formLabel {

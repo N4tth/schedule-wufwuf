@@ -12,22 +12,22 @@ const Navbar = () => {
   const router = useRouter(); // Inicializa el router
 
   useEffect(() => {
-    // const fetchUser = async () => {
-    //   await axios.get(userManagement
-    //   ).then((res) => {
-    //     const userData = res.data;
+    const fetchUser = async () => {
+      await axios.get(userManagement
+      ).then((res) => {
+        const userData = res.data;
 
-    //     //Verifica si es admin
-    //     if (userData.role !== "member") {
-    //       setIsAdmin(true)
-    //     } else {
-    //       setIsAdmin(false)
-    //     }
+        //Verifica si es admin
+        if (userData.role !== "member") {
+          setIsAdmin(true)
+        } else {
+          setIsAdmin(false)
+        }
 
-    //   }).catch((err) => {
-    //   });
-    // };
-    // fetchUser()
+      }).catch((err) => {
+      });
+    };
+    fetchUser()
     setIsAdmin(true)
   }, []);
 
