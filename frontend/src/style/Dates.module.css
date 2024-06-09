@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  color: white;
+  color: #ACCC7B;
   
 }
 
@@ -25,8 +25,8 @@
 }
 
 .navbarButton{
-  background-color: #ACCC7B;
-  color: white;
+  background-color: white;
+  color: #668a4c;
   width: 150px; 
   height: 40px; 
   border: none; 
@@ -34,9 +34,9 @@
 }
 
 .tittleContainer{
-  background-color: white;
+  background-color: #668A4C;
   font-size: 3.5em;
-  color: #ACCC7B;
+  color: white;
   font-weight: bold;
   
 }
@@ -59,8 +59,9 @@
   padding: 20dp;
   box-sizing: border-box;
   color: #668a4c;
+  border: none; 
+  border-radius: 5px; 
 }
-
 
 
 /* Logo */
@@ -83,17 +84,17 @@
 .navLinks li a {
   display: block;
   text-decoration: none;
-  color: #668A4C;
+  color: white;
   padding: 15px 16px;
-  background-color: white;
+  background-color: #668A4C;
   transition: background-color 0.3s, color 0.3s;
   font-family: roboto, sans-serif;
   font-weight: bold;
 }
 
 .navLinks li a:hover {
-  background-color: #668a4c;
-  color: #fff;
+  background-color: white;
+  color: #668A4C;
 }
 
 
@@ -101,7 +102,7 @@
   font-size: 24px;
   margin-top: 15px;
   margin-bottom: 10px;
-  color: white;
+  color: #668A4C;
   
 }
 
@@ -110,13 +111,13 @@
   flex-direction: column;
   align-items: flex-start; 
   justify-content: center;
-  background-color: #668a4c;
+  background-color: white;
   padding-left: 80px;
 }
 
 .formButton{
-  background-color: white;
-  color: #668a4c;
+  background-color: #668A4C;
+  color: white;
   width: 150px;
   height: 40px;
   border: none;
@@ -136,7 +137,7 @@
 }
 
 .formLabel {
-  color: white;
+  color: #668A4C;
   display:grid;
   width: 100%;
   max-width: 300px;

@@ -198,7 +198,7 @@ export default function Dates() {
                         ) : (
                         <>
                         <p className={styles.introMessage}>¡Agenda tu cita y adopta tu peludito!</p>
-                        <form onSubmit={handleSubmit} className='text-black'>
+                        <form className="p-5 border w-96 mx-auto rounded-lg bg-white shadow-lg" onSubmit={handleSubmit}>
                             <label className={styles.formLabel}>
                                 Escoge una fecha:
                                 <input type="date" className={styles.inputField} name="date_time" placeholder="Fecha de la cita" value={formData.date_time} onChange={handleChange} />
@@ -219,9 +219,10 @@ export default function Dates() {
                             </div>
                             {!isUser && (
                             <>
-                            <label className={styles.formLabel}>
+                            <label htmlFor="name" className="p-2 flex items-center">
                                 Nombre:
-                                <input type="text" className={styles.inputField} name="name" placeholder="Nombre" value={formData.name} onChange={handleChange} />
+                                
+                                <input type="text" className="border border-olivine-700 w-full rounded-md" name="name" placeholder="Nombre" value={formData.name} onChange={handleChange} />
                             </label>
                             <label className={styles.formLabel}>
                                 Apellido:
