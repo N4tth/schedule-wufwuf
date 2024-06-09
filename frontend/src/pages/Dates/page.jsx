@@ -97,17 +97,12 @@ export default function Dates() {
         setCalendarOpen(false);
     };
 
-    const handleCalendar = () =>{
-        let calendar = new CalendarWidget()
-        if(isUser){
-            calendar.isOpen={isCalendarOpen}
-            calendar.setCalendarOpen(true);
-        }
-        else{
-            //toast.error("Debes iniciar sesion para ver tus citas");
-            calendar.isOpen={isCalendarOpen}
-            calendar.setCalendarOpen(true);
-            
+    const handleCalendar = () => {
+        if (isUser) {
+            setCalendarOpen(true);
+        } else {
+            toast.error("Debes iniciar sesión para ver tus citas");
+            //setCalendarOpen(true); 
         }
     }
     
@@ -185,7 +180,7 @@ export default function Dates() {
                             <li><a href="#">Inicio</a></li>
                             <li><a href="#">Catálogo</a></li>
                             <li>
-                                <button onClick={openCalendar} className='open-calendar-btn'>
+                                <button onClick={handleCalendar} className='open-calendar-btn'>
                                     Tus citas
                                 </button>
                                 {isCalendarOpen && <CalendarWidget isOpen={isCalendarOpen} onClose={closeCalendar} />}
