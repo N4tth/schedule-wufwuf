@@ -23,7 +23,6 @@ export default function Dates() {
 
     const [isUser, setIsUser] = useState(false);
     const [dates, setDates] = useState([]);
-    const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true); // Estado de carga
     const [isCalendarOpen, setCalendarOpen] = useState(false);
 
@@ -145,14 +144,6 @@ export default function Dates() {
                     email: userData.email
                 }));
                 setIsUser(true)
-
-                //Verifica si es admin
-                if (userData.role !== "member") {
-                    setIsAdmin(true)
-                } else {
-                    setIsAdmin(false)
-                }
-
             }).catch((err) => {
                 setIsUser(false)
             });
@@ -196,7 +187,7 @@ export default function Dates() {
                 <div className={styles.formContainer}>
                     {loading ? (
                     <div className="flex justify-center items-center h-full">
-                        <ClipLoader size={50} color={"white"} loading={loading} />
+                        <ClipLoader size={50} color={"#668a4c"} loading={loading} />
                     </div>
                         ) : (
                         <>

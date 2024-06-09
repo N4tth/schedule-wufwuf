@@ -5,10 +5,16 @@ import { backend } from '../../tools';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { redirect } from 'next/navigation';
 
 export default function Admin() {
     const [dates, setDates] = useState([]);
     const [creating, setCreating] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [loading, setLoading] = useState(true); // Estado de carga
+
+    
+
 
     async function deleteDate(id) {
         await axios.delete(deleteDate, {
@@ -31,6 +37,8 @@ export default function Admin() {
     // }
 
     useEffect(() => {
+
+        //Carga citas
         const fetchDates = async () => {
             await axios.get(backend
             ).then((res) => {
@@ -41,8 +49,39 @@ export default function Admin() {
             });
         };
 
-        fetchDates()
+        //Verifica si es admin
+        const fetchUser = async () => {
+            var boolean = false
+            await axios.get(userManagement
+            ).then((res) => {
+                const userData = res.data;
+
+                //Verifica si es admin
+                if (userData.role !== "member") {
+                    boolean = true
+                } else {
+                    boolean = false
+                }
+
+            }).catch((err) => {
+            });
+            if(boolean){
+                setIsAdmin(boolean)
+            }else{
+                
+            }
+        };
+
+        const fetchData = async () => {
+            setLoading(true)
+            await fetchUser()
+            await fetchDates()
+            setLoading(false)
+        };
+        
+        fetchData()
     }, []);
+
 
     return (
         <>
@@ -105,6 +144,7 @@ export default function Admin() {
                     <hr />
                 </section>
             )}
+            <ToastContainer />
         </>
     );
 }
