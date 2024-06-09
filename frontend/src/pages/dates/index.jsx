@@ -176,11 +176,15 @@ export default function Dates() {
         ) : (
           <>
             <div className={`${styles.formContainer} relative`}>
-              <img src={pet.urls_images[0]} alt="Mascota"/>
-              <label className="block text-olivine-700">Información de la mascota</label>
-              <label className="block text-olivine-700">{pet.description}</label>
-              <label className="block text-olivine-700">Soy un {pet.especie} y de raza {pet.breed}</label>
-              <label className="block text-olivine-700">Adoptame, por favor!</label>
+            <div className={styles.promoContainer}>
+              <img src={pet.urls_images[0]} alt="Mascota" />
+            </div>
+              <div className={`${styles.promoContainer}relative`}>
+              <label className="block text-olivine-700 text-center font-bold">Información de la mascota</label>
+                <label className="block text-olivine-700 text-justify">{pet.description}</label>
+                <label className="block text-olivine-700 text-justify">Soy un {pet.especie} y de raza {pet.breed}</label>
+                <label className="block text-olivine-700 text-center">¡Adóptame, por favor!</label>
+              </div>
               <></>
             </div>
             <div className={`${styles.formContainer} relative space-y-4`}>
