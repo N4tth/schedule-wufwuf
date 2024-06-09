@@ -1,15 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation"; // Importa useRouter
 import Link from "next/link";
 
-import logo from "../../public/logo.png"
 import axios from "axios";
 import { userManagement } from "@/tools";
 
 const Navbar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const router = useRouter(); // Inicializa el router
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,11 +25,10 @@ const Navbar = () => {
       });
     };
     fetchUser()
-    setIsAdmin(true)
   }, []);
 
   return (
-    <header className="px-4 lg:px-6 h-18 flex items-center bg-olivine-400">
+    <header className="px-4 lg:px-6 h-20 flex items-center bg-olivine-400">
       <Link className="flex items-center justify-center" href="/service-users/">
         <img src="/service-dates/logo.png" alt="logo" width={70} />
         <span className="sr-only">Wuf wuf Icono</span>
