@@ -168,80 +168,101 @@ export default function Dates() {
 
 
     return (
-        <div className="w-screen h-screen flex flex-col">
-            <header className='inset-x-0 top-0 text-white bg-[#668a4c] flex flex-col text-center'>
-                <div>
-                    <h1 className={styles.tittleContainer}>Wuf Wuf</h1>
-                </div>
-                
-                <div className={styles.buttonContainer}>
-                    <nav>
-                        <ul className={styles.navLinks}>
-                            <li><a href="#">Inicio</a></li>
-                            <li><a href="#">Catálogo</a></li>
-                            <li>
-                                <button onClick={handleCalendar} className='open-calendar-btn'>
-                                    Tus citas
-                                </button>
-                                {isCalendarOpen && <CalendarWidget isOpen={isCalendarOpen} onClose={closeCalendar} />}
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-            <div className='w-screen h-screen'>
-                <div className={styles.formContainer}>
-                    {loading ? (
-                    <div className="flex justify-center items-center h-full">
-                        <ClipLoader size={50} color={"white"} loading={loading} />
-                    </div>
-                        ) : (
+        <div className="w-screen h-screen flex flex-col relative"> 
+          <header className="inset-x-0 top-0 text-white bg-olivine-700 flex flex-col items-center justify-center">
+            <h1 className="text-4xl font-bold mb-4">Wuf Wuf</h1>
+          </header>
+          <button onClick={handleCalendar} className={styles.calButton}> 
+            Tus citas
+          </button>
+          {isCalendarOpen && <CalendarWidget isOpen={isCalendarOpen} onClose={closeCalendar} />}
+          <p className={`${styles.introMessage} text-olivine-700 absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2`}>¡Agenda tu cita y adopta tu peludito!</p>
+          <div className="w-full h-full">
+          <div className="flex items-center h-full">
+              {loading ? (
+                <ClipLoader size={50} color={"#668A4C"} loading={loading} />
+              ) : (
+                    
+                    <div className={`${styles.formContainer} relative`}>
+                        <form onSubmit={handleSubmit} className="relative">
+                      <label className="block mb-4">
+                        Escoge una fecha:
+                        <input
+                          type="date"
+                          className="border border-olivine-700 w-full rounded-md p-1"
+                          name="date_time"
+                          placeholder="Fecha de la cita"
+                          value={formData.date_time}
+                          onChange={handleChange}
+                        />
+                      </label>
+                      <div className="mb-4">
+                        <label className="block text-olivine-700">Hora</label>
+                        <select
+                          id="hour_date_time"
+                          name="hour_date_time"
+                          value={formData.hour_date_time}
+                          onChange={handleChange}
+                          className="border border-olivine-700 w-full rounded-md p-1"
+                        >
+                          <option value="">Seleccione una hora</option>
+                          {generateTimeOptions().map((time) => (
+                            <option key={time} value={time}>{time}</option>
+                          ))}
+                        </select>
+                      </div>
+                      {!isUser && (
                         <>
-                        <p className={styles.introMessage}>¡Agenda tu cita y adopta tu peludito!</p>
-                        <form className="p-5 border w-96 mx-auto rounded-lg bg-white shadow-lg" onSubmit={handleSubmit}>
-                            <label className={styles.formLabel}>
-                                Escoge una fecha:
-                                <input type="date" className={styles.inputField} name="date_time" placeholder="Fecha de la cita" value={formData.date_time} onChange={handleChange} />
-                            </label>
-                            <div>
-                                <label className={styles.formLabel}>Hora</label>
-                                <select
-                                    id="hour_date_time"
-                                    name="hour_date_time"
-                                    value={formData.hour_date_time}
-                                    onChange={handleChange}
-                                >
-                                    <option value="">Seleccione una hora</option>
-                                    {generateTimeOptions().map((time) => (
-                                    <option key={time} value={time}>{time}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            {!isUser && (
-                            <>
-                            <label htmlFor="name" className="p-2 flex items-center">
-                                Nombre:
-                                
-                                <input type="text" className="border border-olivine-700 w-full rounded-md" name="name" placeholder="Nombre" value={formData.name} onChange={handleChange} />
-                            </label>
-                            <label className={styles.formLabel}>
-                                Apellido:
-                                <input type="text" className={styles.inputField} name="last_name" placeholder="Apellido" value={formData.last_name} onChange={handleChange} />
-                            </label>
-                            <label className={styles.formLabel}>
-                                Email:
-                                <input type="email" className={styles.inputField} name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
-                            </label>
-                            </>
-                            )}
-                            <button className={styles.formButton} type="submit">Crear cita</button>
-                        </form>
+                          <label className="block mb-4 text-olivine-700">
+                            Nombre:
+                            <input
+                              type="text"
+                              className="border border-olivine-700 w-full rounded-md p-1"
+                              name="name"
+                              placeholder="Nombre"
+                              value={formData.name}
+                              onChange={handleChange}
+                            />
+                          </label>
+                          <label className="block mb-4 text-olivine-700">
+                            Apellido:
+                            <input
+                              type="text"
+                              className="border border-olivine-700 w-full rounded-md p-1"
+                              name="last_name"
+                              placeholder="Apellido"
+                              value={formData.last_name}
+                              onChange={handleChange}
+                            />
+                          </label>
+                          <label className="block mb-4 text-olivine-700">
+                            Email:
+                            <input
+                              type="email"
+                              className="border border-olivine-700 w-full rounded-md p-1"
+                              name="email"
+                              placeholder="Email"
+                              value={formData.email}
+                              onChange={handleChange}
+                            />
+                          </label>
                         </>
-                    )}
-                </div>
+                      )}
+                      <button className={styles.formButton} type="submit">Crear cita</button>
+                    </form>
+                        
+                        
+                  </div>
+             
+              )}
             </div>
-        <ToastContainer />
-        </div >  
-    );
+          </div>
+          <ToastContainer />
+        </div>
+      );
+      
+      
+      
+      
 
 }
