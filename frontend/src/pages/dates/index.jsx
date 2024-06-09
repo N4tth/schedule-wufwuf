@@ -260,8 +260,8 @@ export default function Dates() {
                   </>
 
                 )}
-                <div className='flex justify-center'>
-                  <button className={styles.formButton} type="submit">Crear cita</button>
+                <div className='flex justify-center selected-none'>
+                  <button className={`${styles.formButton}`} type="submit">Crear cita</button>
                 </div>
               </form>
             </div>
