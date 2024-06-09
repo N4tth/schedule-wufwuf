@@ -29,7 +29,7 @@ export default function Dates() {
     description: 'Soy una descripcion',
     especie: 'mitad Gato',
     breed: 'No se',
-    urls_images: [
+    urls_images: [ 
       "",
     ]
   });
@@ -176,19 +176,24 @@ export default function Dates() {
           <ClipLoader size={50} color={"#668A4C"} loading={loading} />
         ) : (
           <>
-            <div className={`${styles.formContainer2} space-x-16`}>
-              <label className=" text-olivine-700 text-center font-bold flex justify-center items-center w-full pb-6">Información de la mascota</label>
-              <div className='flex flex-row items-center justify-center'>
-                <div className={styles.promoContainer}>
-                  <img src={'https://firebasestorage.googleapis.com/v0/b/catalog-wufwuf.appspot.com/o/pets%2Ffe5c55f6-7006-43fa-b2ce-83daa72fa65f?alt=media&token=0d7d86da-7c29-4992-aed4-daf52fd423ff'} alt="Mascota" />
-                </div>
-                <div className='flex flex-col space-y-4'>
-                  <label className=" text-olivine-700 text-justify">{pet.description}</label>
-                  <label className=" text-olivine-700 text-justify">Soy un {pet.especie} y de raza {pet.breed}</label>
-                  <label className=" text-olivine-700 text-center">¡Adóptame, por favor!</label>
-                </div>
+            <div className={`${styles.formContainer} relative`} style={{ overflow: 'hidden' }}>
+              <div className={styles.promoContainer}>
+                <img src={pet.urls_images[0]} alt="Mascota" />
+              </div>
+              <div className={`${styles.promoContainer2} relative`} style={{ overflow: 'auto', width: '300px', height: '300px' }}>
+                <div style={{ marginBottom: '20px' }}>
+                <h2 className="text-olivine-700 font-bold text-center mb-2">Información de la mascota</h2>
+                <p className="text-olivine-700 text-justify" style={{ maxHeight: '100px', overflowY: 'auto' }}>{pet.description}</p>
+              </div>
+              <div style={{ marginBottom: '20px' }}>
+                <h2 className="text-olivine-700 font-bold text-center mb-2">Especie y raza</h2>
+                <p className="text-olivine-700 text-justify">{`Soy un ${pet.especie} y de raEl patrón de API Gateway actúa como un punto de entrada único para gestionar las solicitudes de clientes en un sistema de microservicios. Proporciona funcionalidades como enrutamiento, autenticación, autorización y agregación de datos, simplificando así la complejidad para los clientes y mejorando la eficiencia.za ${pet.breed}`}</p>
+              </div>
+              <div>
+                <h2 className="text-olivine-700 font-bold text-center">¡Adóptame, por favor!</h2>
               </div>
             </div>
+          </div>
             <div className={`${styles.formContainer} relative space-y-4`}>
               <div className='flex flex-col justify-center h-full w-full items-center relative space-y-4'>
                 <p>Pulsa aquí para ver tus citas</p>
@@ -259,7 +264,6 @@ export default function Dates() {
                       />
                     </label>
                   </>
-
                 )}
                 <div className='flex justify-center selected-none'>
                   <button className={`${styles.formButton}`} type="submit">Crear cita</button>
@@ -272,6 +276,7 @@ export default function Dates() {
       <ToastContainer />
     </div>
   );
+  
 
 
 
