@@ -1,0 +1,106 @@
+
+.react-calendar { 
+    width: 400px;
+    max-width: 100%;
+    background-color: #fff;
+    color: #464646;
+    border-radius: 8px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+}
+
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8fa; 
+    border-bottom: 1px solid #ddd; 
+}
+
+.react-calendar__navigation button {
+    color: #ACCC7B;
+    min-width: 44px;
+    background: none;
+    font-size: 16px;
+    margin: 0;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px; 
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+    background-color: #eaeaea; 
+}
+
+.react-calendar__navigation button[disabled] {
+    background-color: transparent; 
+    color: #ccc; 
+}
+
+.abbr-title {
+    text-decoration: none;
+}
+
+.react-calendar__tile {
+    background: none; 
+    border: none; 
+    color: inherit; 
+    cursor: pointer;
+    outline: none;
+    padding: 10px; 
+    border-radius: 4px; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    background-color: #f8f8fa; 
+    color: #ACCC7B; 
+}
+
+.react-calendar__tile--now {
+    background-color: #464646;
+    border-radius: 4px;
+    color: #ACCC7B;
+    font-weight: bold;
+}
+
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+    background-color: #464646;
+    color: #ACCC7B;
+}
+
+.react-calendar__tile--active {
+    background-color: #ACCC7B;
+    color: white;
+    font-weight: bold;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+    background-color: #ACCC7B;
+    color: white;
+}
+
+.react-calendar--selectRange .react-calendar__tile--hover {
+    background-color: #f8f8fa;
+}
+
+.react-calendar__tile--range {
+    background-color: #f8f8fa;
+    color: #ACCC7B;
+    border-radius: 0;
+}
+
+.react-calendar__tile--rangeStart,
+.react-calendar__tile--rangeEnd {
+    background-color: #ACCC7B;
+    color: white;
+    border-radius: 4px;
+}
