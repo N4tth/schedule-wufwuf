@@ -42,24 +42,17 @@
   margin-top: -185px;
   margin-bottom: 10px;
   color: #668A4C;
-  position:absolute;
-  top: 50%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  z-index: 9999; 
   font-weight: bold;
 }
 
 .formContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  margin-top: 35px; 
-  position: absolute;
-  right: 0;
-  margin-right: 100px;
   background-color: white;
+  border: 1px solid;
+  border-color: #ddd;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
   padding: 50px;
   color: #668A4C;
@@ -73,8 +66,6 @@
   border: none;
   border-radius: 5px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  text-weight:bold;
-  
 }
 
 .calButton {
