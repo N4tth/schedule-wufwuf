@@ -79,6 +79,28 @@
   transition: all 0.3s ease;
 }
 
+.promoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  border: #ddd;
+  margin-top: -44px;
+  margin-bottom: 15px;
+  box-shadow: 2px 2px 10px rgba(102, 138, 76, 0.5); 
+  background-color: #ACCC7B;
+
+  min-width: 300px;
+  min-height: 350px;
+
+  overflow: hidden; 
+}
+.promoContainer img {
+  max-width: 100%; 
+  height: auto; 
+  display: block; 
+  object-fit: contain; 
+}
+
 
 .inputField {
   margin-bottom: 20px;
