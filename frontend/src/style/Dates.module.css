@@ -46,8 +46,8 @@
   display: block;
   text-decoration: none;
   color: #accc7b;
-  padding: 15px 160px;
-  background-color: #fff;
+  padding: 15px 16px;
+  background-color: white;
   transition: background-color 0.3s, color 0.3s;
   font-family: roboto, sans-serif;
   font-weight: bold;
@@ -75,14 +75,6 @@
   margin-bottom: 20px;
   width: 100%;
   max-width: 300px;
-}
-
-/* Pie de página */
-.footer {
-  background-color: #668a4c;
-  color: white;
-  padding: 20px;
-  text-align: center;
 }
 
 /* Label formulario */

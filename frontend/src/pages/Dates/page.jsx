@@ -1,11 +1,15 @@
 'use client'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from '../../style/Dates.module.css';
+import styles from '@/style/Dates.module.css'
 import { backend, catalogPet, userManagement } from '../../tools';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ClipLoader from 'react-spinners/ClipLoader';
+
+import CalendarWidget from '@/components/calendar';
+
+
 
 export default function Dates() {
     const [formData, setFormData] = useState({
@@ -22,6 +26,8 @@ export default function Dates() {
     const [dates, setDates] = useState([]);
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true); // Estado de carga
+    const [clientAppointments, setClientAppointments] = useState([]);
+    const [isCalendarOpen, setCalendarOpen] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,6 +48,14 @@ export default function Dates() {
             }
         }
         return options;
+    };
+
+    const openCalendar = () => {
+        setCalendarOpen(true);
+    };
+
+    const closeCalendar = () => {
+        setCalendarOpen(false);
     };
 
     const handleSubmit = async (e) => {
@@ -83,7 +97,19 @@ export default function Dates() {
         }
     };
 
+
+    const handleShowClientAppointments = async () => {
+        try {
+            const appointmentsResponse = await axios.get('/api/client/appointments');
+            setClientAppointments(appointmentsResponse.data);
+        } catch (error) {
+            console.error('Error fetching client appointments:', error);
+        }
+    };
+
+
     useEffect(() => {
+        console.log("thoi funcionando chicheñol")
         const fetchDates = async () => {
             await axios.get(backend
             ).then((res) => {
@@ -157,9 +183,14 @@ export default function Dates() {
                         <ul className={styles.navLinks}>
                             <li><a href="#">Inicio</a></li>
                             <li><a href="#">Catálogo</a></li>
-                            <li><a href="#">Tus citas</a></li>
+                            <li><button onClick={handleShowClientAppointments} className='open-calendar-btn'>Tus citas</button></li>
+                            <CalendarWidget isOpen={isCalendarOpen} onClose={closeCalendar} />
+                            {clientAppointments.length > 0 && clientAppointments.map(appointment => (
+                                <li key={appointment.id}>{appointment.date} - {appointment.time}</li>
+                            ))}
                         </ul>
                     </nav>
+                    
                 </div>
             </header>
             <div className='w-screen h-screen'>
@@ -214,10 +245,8 @@ export default function Dates() {
                     )}
                 </div>
             </div>
-            <footer className="bg-[#668a4c] text-white p-[20px] text-center inset-x-0 bottom-0">
-                <p>Contacto: contact@wufwuf.com</p>
-            </footer>
             <ToastContainer />
         </div >
     );
 }
+
