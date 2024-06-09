@@ -6,7 +6,7 @@ import { backend, catalogPet, userManagement } from '../../tools';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ClipLoader from 'react-spinners/ClipLoader';
-
+import { useRouter } from 'next/navigation';
 import CalendarWidget from '@/components/calendar';
 
 
@@ -21,6 +21,7 @@ export default function Dates() {
     email: ''
   });
 
+  const router = useRouter();
   const [isUser, setIsUser] = useState(false);
   const [dates, setDates] = useState([]);
   const [pet, setPet] = useState({
@@ -83,7 +84,7 @@ export default function Dates() {
           .then((res) => {
             console.log(res);
             toast.success("¡Cita creada exitosamente! y correo de confirmación enviado");
-            // TODO: redireccionar a algo. Que haga algo lmao
+            router.push('/service-pets/lista_mascotas');
           }).catch((err) => {
             console.error(err);
             toast.error("Error con la base de datos, inténtalo después");
@@ -175,18 +176,18 @@ export default function Dates() {
           <ClipLoader size={50} color={"#668A4C"} loading={loading} />
         ) : (
           <>
-            <div className={`${styles.formContainer} relative`}>
-            <div className={styles.promoContainer}>
-              <img src={pet.urls_images[0]} alt="Mascota" />
-            </div>
-            <div className={`${styles.promoContainer2} relative`}>
-              <label className="block text-olivine-700 text-center font-bold">Información de la mascota</label>
-              <label className="block text-olivine-700 text-justify">{pet.description}</label>
-              <label className="block text-olivine-700 text-justify">Soy un {pet.especie} y de raza {pet.breed}</label>
-              <label className="block text-olivine-700 text-center">¡Adóptame, por favor!</label>
-            </div>
-
-              <></>
+            <div className={`${styles.formContainer2} space-x-16`}>
+              <label className=" text-olivine-700 text-center font-bold flex justify-center items-center w-full pb-6">Información de la mascota</label>
+              <div className='flex flex-row items-center justify-center'>
+                <div className={styles.promoContainer}>
+                  <img src={'https://firebasestorage.googleapis.com/v0/b/catalog-wufwuf.appspot.com/o/pets%2Ffe5c55f6-7006-43fa-b2ce-83daa72fa65f?alt=media&token=0d7d86da-7c29-4992-aed4-daf52fd423ff'} alt="Mascota" />
+                </div>
+                <div className='flex flex-col space-y-4'>
+                  <label className=" text-olivine-700 text-justify">{pet.description}</label>
+                  <label className=" text-olivine-700 text-justify">Soy un {pet.especie} y de raza {pet.breed}</label>
+                  <label className=" text-olivine-700 text-center">¡Adóptame, por favor!</label>
+                </div>
+              </div>
             </div>
             <div className={`${styles.formContainer} relative space-y-4`}>
               <div className='flex flex-col justify-center h-full w-full items-center relative space-y-4'>
