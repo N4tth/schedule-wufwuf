@@ -69,6 +69,9 @@ const Navbar = () => {
             Editar citas
           </Link>
         }
+        <Link href="/service-pets/catalogo"className="select-none mx-4 h-8 w-18 hover:text-[#ddd] flex items-center justify-center text-white font-semibold  border-b-4 border-transparent hover:border-olivine-600">
+          Catalogo
+        </Link>
         {isLogged ? (
           <>
             <a onClick={handleLogout} className="select-none mx-4 h-8 w-18 hover:text-[#ddd] flex items-center justify-center text-white font-semibold border-b-4 border-transparent hover:border-olivine-600">

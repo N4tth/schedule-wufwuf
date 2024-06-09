@@ -91,6 +91,9 @@
 
   min-width: 300px;
   min-height: 350px;
+  max-width: 300px;
+  max-height: 350px;
+  
 
   overflow: hidden; 
     max-width: 300px;

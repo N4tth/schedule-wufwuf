@@ -1,15 +1,11 @@
-import { NextResponse } from 'next/server';
+import cookie from 'cookie';
 
-export async function DELETE(request) {
-  // Crear una respuesta vacía
-  const response = NextResponse.next();
+export default function handler (req, res) {
+  res.setHeader('Set-Cookie', cookie.serialize('access-token', '', {
+    maxAge: -1, // Elimina la cookie
+    path: '/', // Asegúrate de que el camino coincide con el que se estableció originalmente
+  }));
 
-  // Establecer la cookie 'access-token' con una fecha de expiración en el pasado
-  response.cookies.set('access-token', '', {
-    maxAge: -1, // Expira inmediatamente
-    path: '/', // Asegúrate de que el camino coincide con el camino original de la cookie
-  });
-
-  // Devolver la respuesta
-  return response;
-}
+  res.statusCode = 200;
+  res.json({ message: 'Cookie borrada' });
+};
