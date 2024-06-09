@@ -48,6 +48,14 @@ export default function Dates() {
         return options;
     };
 
+    const openCalendar = () => {
+        setCalendarOpen(true);
+    };
+
+    const closeCalendar = () => {
+        setCalendarOpen(false);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -99,6 +107,7 @@ export default function Dates() {
 
 
     useEffect(() => {
+        console.log("thoi funcionando chicheñol")
         const fetchDates = async () => {
             await axios.get(backend
             ).then((res) => {
