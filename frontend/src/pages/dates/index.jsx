@@ -29,7 +29,7 @@ export default function Dates() {
     especie: 'mitad Gato',
     breed: 'No se',
     urls_images: [ 
-      "https://firebasestorage.googleapis.com/v0/b/catalog-wufwuf.appspot.com/o/pets%2Ffe5c55f6-7006-43fa-b2ce-83daa72fa65f?alt=media&token=0d7d86da-7c29-4992-aed4-daf52fd423ff",
+      "",
     ]
   });
   const [loading, setLoading] = useState(true); // Estado de carga
